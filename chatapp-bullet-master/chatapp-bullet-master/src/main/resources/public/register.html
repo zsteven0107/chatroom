@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+            crossorigin="anonymous"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- Chat CSS -->
+    <link href="chat.css" type="text/css" rel="stylesheet">
+    <!-- Chat CSS - minified-->
+    <link href="chatRoom.css" type="text/css" rel="stylesheet">
+    <script src="js/view.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Chat Room</li>
+        <li class="breadcrumb-item" onclick="backToLogin()"><a href="register.html">Back to Register</a></li>
+    </ol>
+</nav>
+
+<div class="card rare-wind-gradient chat-room"  style="margin-left: 50px;margin-right: 50px;" >
+    <div class="card-body">
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col-md-3" style="width: 15rem;">
+                <h6 class="font-weight-bold mb-3 text-center text-lg-left">Profile</h6>
+                <ul>
+                    <div class>
+                        <div class="card-border-white" style="width: 12rem;">
+                            <div class="card-body">
+                                <div class="d-flex flex-column align-items-center text-center">
+                                    <img src = "https://source.unsplash.com/user/erondu/900x900" alt="Admin" class="rounded-circle" width="150">
+
+                                    <div class="">
+                                        <h4 id="profileusername">User Name</h4>
+                                        <p id="profileschool" class="text-secondary mb-1"></p>
+                                        <p id="profileage" class="text-secondary mb-1"></p>
+                                        <p id="profileinterest1" class="text-secondary mb-1"></p>
+                                        <p id="profileinterest2" class="text-secondary mb-1"></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#createModal">Create</button>
+                <h6/>
+                <h6/>
+                <h6 class="font-weight-bold mb-3 text-center text-lg-left">Your Room</h6>
+                <div class="white z-depth-1 px-2 pt-3 pb-0 members-panel-1" style="clear:both;max-height: 150px;overflow-y: scroll;">
+                    <ul id="joinedRooms" class="list-unstyled friend-list">
+                    </ul>
+                </div>
+                <br>
+                <h6 class="font-weight-bold mb-3 text-center text-lg-left">Public Room</h6>
+                <div class="white scrollbar-light-blue" style="max-height: 200px;overflow-y: scroll;">
+                    <ul id="publicRooms" class="list-unstyled friend-list">
+                    </ul>
+                </div>
+                <br>
+                <h6 class="font-weight-bold mb-3 text-center text-lg-left">Request</h6>
+                <div class="white scrollbar-light-blue" style="max-height: 200px;overflow-y: scroll;">
+                    <ul id="approveRequest" class="list-unstyled friend-list">
+                    </ul>
+                </div>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div id="chatRoomMainWindow" class="col-md-9" style="visibility:hidden">
+                <div>
+                    <div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="height:50px">
+                                <div style="float:left;" id="chattingRoomName">name</div>
+                                <div style="float:right;">
+                                    <button style="margin-bottom: 5px;margin-right: 5px;" type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#inviteModal">Invite Friends</button>
+                                    <button style="margin-bottom: 5px;" onClick="sendExitRoomRequest()" id="ExitChattingRoom" type="button" class="btn btn-danger">Exit</button>
+                                </div>
+                            </div>
+
+                            <div class="panel-body">
+                                <div id="chatArea"
+                                     style="width:600px;float:left; height: 350px;overflow-y: scroll;">
+                                </div>
+                                <div style="float:right;max-height: 400px;">
+                                    <h4>Group Member</h4>
+                                    <ul id="userList" class="list-group" style="max-height: 400px;">
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <div id="tool"
+                                     style="margin-bottom: 5px;">
+                                    <div id="sendTo" style="display:inline;">
+                                        send to:
+                                        <select id="sendToMembers">
+                                        </select>
+                                    </div>
+                                    <div id="emoji" style="margin-left: 10px; display:inline">
+                                        <a href="#" type="button" data-toggle="collapse" data-target="#con"
+                                           aria-expanded="false">&#128540;
+                                            emoji
+                                        </a>
+                                        <div class="collapse" id="con" style="width: 500px;">
+                                            <!-- Component -->
+                                            <div class="emojiPicker">
+                                                <div class="emojis">
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128540;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128513;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128514;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128515;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128516;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128517;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128518;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128519;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128521;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128522;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128523;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128524;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128525;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128526;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128527;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128528;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128529;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128530;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128531;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128532;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128533;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128534;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128535;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128536;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128537;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128538;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128539;</span>
+                                                    </div>
+                                                    <div class="emojiFrame" style="display:inline"><span class="emoji">&#128546;</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="sendChat">
+                                    <div id="messageInput">
+                                        <textarea id="message" class="form-control" rows="3"></textarea>
+                                    </div>
+                                    <button id="btn-msg">Send Message</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div >
+        </div>
+        <!-- Grid row -->
+
+    </div>
+</div>
+<div>
+    <div id="dropdown" style="float:right;visibility:hidden">
+        <div class="dropdown">
+            <a href="#" data-toggle="dropdown"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a name="0" href="#" onclick="EditMessage(this)" data-toggle="modal" data-target="#editModal">Edit</a>
+                </li>
+                <li><a name="1" href="#" onclick="deleteMessage(this)">Delete</a></li>
+                <li><a name="2" href="#" onclick="sendRecallMessageRequest(this)">Recall</a></li>
+                <li><a name="3" href="#" data-toggle="modal"
+                       data-target="#reportModal" onclick="EditMessage(this)">Report</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="modal fade" id="createModal" tabindex="-1"
+         aria-labelledby="createModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createModalLabel">Create New Room</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label>Chatting Room Name:</label>
+                    <input type="text" id="chattingRoomNameInput"></input>
+                    <br>
+                    <label>Type:</label>
+                    <select id="createRoomType">
+                        <option value ="public">Public</option>
+                        <option value ="private">Private</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Close
+                    </button>
+                    <button id="createRoom" type="button" class="btn btn-primary" data-dismiss="modal">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+         aria-labelledby="myEditModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">&times;
+                    </button>
+                    <h5 class="modal-title" id="myEditModalLabel">Edit</h5>
+                </div>
+                <div class="modal-body">
+                    <div id="emojiEdit" style="margin-left: 10px; display:inline">
+                        <a href="#" type="button" data-toggle="collapse"
+                           data-target="#conEdit" aria-expanded="false">&#128540;
+                            emoji
+                        </a>
+                        <div class="collapse" id="conEdit" style="width: 500px;">
+                            <!-- Component -->
+                            <div class="emojiPicker">
+                                <div class="emojis">
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128540;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128513;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128514;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128515;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128516;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128517;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128518;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128519;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128521;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128522;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128523;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128524;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128525;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128526;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128527;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128528;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128529;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128530;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128531;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128532;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128533;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128534;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128535;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128536;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128537;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128538;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128539;</span>
+                                    </div>
+                                    <div class="emojiFrameEdit" style="display:inline">
+                                        <span class="emojiEdit">&#128546;</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <textarea id="messageEdit" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button id="messageEditDone" onclick="messageEditFinished()" type="button" class="btn btn-primary">Done</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="modal fade" id="reportModal" tabindex="-1" role="dialog"
+         aria-labelledby="myReportModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">&times;
+                    </button>
+                    <h4 class="modal-title" id="myReportModalLabel">Report</h4>
+                </div>
+                <div class="modal-body">
+                    <textarea id="reportContent" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="reportRequest()">Report to Admin
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="modal fade" id="inviteModal" tabindex="-1"
+         aria-labelledby="inviteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="inviteModalLabel">Invite</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="inviteUserToChatRoomInput">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Close
+                    </button>
+                    <button id="invite" type="button" class="btn btn-primary">Invite</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
+
+</body>
+</html>

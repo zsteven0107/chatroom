@@ -1,0 +1,59 @@
+.container_other {
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    max-width: 400px;
+    clear: both;
+}
+
+.container_me {
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    max-width: 400px;
+    clear: both;
+}
+
+.chatBox_other {
+    float: left;
+    border-radius: 5px;
+    background-color: #DCDCDC;
+}
+
+.chatBox_system {
+    font-size: 10px;
+    color: firebrick;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    clear: both;
+}
+
+.chatBox_secret {
+    float: left;
+    background-color: #FFFF99;
+    clear: both;
+}
+
+.chatBox_secret_me {
+    float: left;
+    background-color: #FFFF99;
+}
+
+.chatBox_me {
+    float: left;
+    border-radius: 5px;
+    background-color: #DCDCDC;
+    clear: both;
+}
+
+.timeStamp {
+    margin-left: 10px;
+    font-size: x-small;
+    color: darkgray;
+}
+
+.icon-success {
+    color: #5CB85C;
+}

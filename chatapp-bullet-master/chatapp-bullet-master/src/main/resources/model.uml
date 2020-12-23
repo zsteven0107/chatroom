@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>edu.rice.comp504.model</OriginalElement>
+  <nodes>
+    <node x="1341.0" y="0.0">edu.rice.comp504.model.object.UserManager</node>
+    <node x="0.0" y="655.0">edu.rice.comp504.model.cmd.EditMsgCmd</node>
+    <node x="1763.5" y="519.0">edu.rice.comp504.model.cmd.ICommand</node>
+    <node x="0.0" y="0.0">edu.rice.comp504.model.object.ChatRoom</node>
+    <node x="2443.0" y="655.0">edu.rice.comp504.model.cmd.BanUserCmd</node>
+    <node x="2050.0" y="655.0">edu.rice.comp504.model.cmd.CreateRoomCmd</node>
+    <node x="0.0" y="794.0">edu.rice.comp504.model.object.ChatRoomManager</node>
+    <node x="402.0" y="0.0">edu.rice.comp504.model.object.Message</node>
+    <node x="1676.0" y="655.0">edu.rice.comp504.model.cmd.JoinRoomCmd</node>
+    <node x="824.0" y="655.0">edu.rice.comp504.model.cmd.InviteUserCmd</node>
+    <node x="2868.0" y="655.0">edu.rice.comp504.model.cmd.SendMsgCmd</node>
+    <node x="880.0" y="0.0">edu.rice.comp504.model.object.User</node>
+    <node x="1264.0" y="655.0">edu.rice.comp504.model.cmd.RecallMsgCmd</node>
+    <node x="454.0" y="655.0">edu.rice.comp504.model.cmd.ExitRoomCmd</node>
+    <node x="3330.0" y="655.0">edu.rice.comp504.model.cmd.ApproveCmd</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="edu.rice.comp504.model.cmd.CreateRoomCmd" target="edu.rice.comp504.model.cmd.ICommand">
+      <point x="0.0" y="-47.0" />
+      <point x="2236.5" y="635.0" />
+      <point x="1872.888888888889" y="635.0" />
+      <point x="19.888888888888914" y="33.0" />
+    </edge>
+    <edge source="edu.rice.comp504.model.cmd.EditMsgCmd" target="edu.rice.comp504.model.cmd.ICommand">
+      <point x="0.0" y="-47.0" />
+      <point x="217.0" y="605.0" />
+      <point x="1773.4444444444443" y="605.0" />
+      <point x="-79.55555555555566" y="33.0" />
+    </edge>
+    <edge source="edu.rice.comp504.model.cmd.JoinRoomCmd" target="edu.rice.comp504.model.cmd.ICommand">
+      <point x="0.0" y="-47.0" />
+      <point x="0.0" y="33.0" />
+    </edge>
+    <edge source="edu.rice.comp504.model.cmd.BanUserCmd" target="edu.rice.comp504.model.cmd.ICommand">
+      <point x="0.0" y="-47.0" />
+      <point x="2645.5" y="625.0" />
+      <point x="1892.7777777777778" y="625.0" />
+      <point x="39.77777777777783" y="33.0" />
+    </edge>
+    <edge source="edu.rice.comp504.model.cmd.ExitRoomCmd" target="edu.rice.comp504.model.cmd.ICommand">
+      <point x="0.0" y="-47.0" />
+      <point x="629.0" y="615.0" />
+      <point x="1793.3333333333333" y="615.0" />
+      <point x="-59.66666666666674" y="33.0" />
+    </edge>
+    <edge source="edu.rice.comp504.model.cmd.ApproveCmd" target="edu.rice.comp504.model.cmd.ICommand">
+      <point x="0.0" y="-47.0" />
+      <point x="3538.5" y="605.0" />
+      <point x="1932.5555555555557" y="605.0" />
+      <point x="79.55555555555566" y="33.0" />
+    </edge>
+    <edge source="edu.rice.comp504.model.cmd.SendMsgCmd" target="edu.rice.comp504.model.cmd.ICommand">
+      <point x="0.0" y="-47.0" />
+      <point x="3089.0" y="615.0" />
+      <point x="1912.6666666666667" y="615.0" />
+      <point x="59.66666666666674" y="33.0" />
+    </edge>
+    <edge source="edu.rice.comp504.model.cmd.RecallMsgCmd" target="edu.rice.comp504.model.cmd.ICommand">
+      <point x="0.0" y="-47.0" />
+      <point x="1460.0" y="635.0" />
+      <point x="1833.111111111111" y="635.0" />
+      <point x="-19.888888888888914" y="33.0" />
+    </edge>
+    <edge source="edu.rice.comp504.model.cmd.InviteUserCmd" target="edu.rice.comp504.model.cmd.ICommand">
+      <point x="0.0" y="-47.0" />
+      <point x="1034.0" y="625.0" />
+      <point x="1813.2222222222222" y="625.0" />
+      <point x="-39.77777777777783" y="33.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5" x="1360.0" y="490.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
